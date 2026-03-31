@@ -1,0 +1,331 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: "Inter", sans-serif;
+}
+
+/* Smooth transition semua elemen saat ganti mode */
+body,
+#home,
+#about,
+#projects,
+#Experience,
+#Tools,
+#contact {
+  transition:
+    background-image 0.5s ease,
+    background-color 0.5s ease,
+    color 0.5s ease;
+}
+
+/* Smooth untuk semua teks dan elemen */
+*,
+*::before,
+*::after {
+  transition:
+    background-color 0.5s ease,
+    color 0.5s ease,
+    border-color 0.5s ease;
+}
+
+/* Light Mode */
+#home {
+  background-image: url("../img/afternoon.jpg");
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+#about {
+  background-image: url("../img/afternoon2.jpg");
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+#projects {
+  background-image: url("../img/afternoon3.jpg");
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  min-height: 100vh;
+}
+
+@media (max-width: 768px) {
+  #projects {
+    background-size: cover;
+    background-position: center center;
+    background-attachment: scroll;
+    min-height: auto;
+  }
+}
+
+#Experience {
+  background-image: url("../img/afternoon4.jpg");
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+#Tools {
+  background-image: url("../img/afternoon5.jpg");
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+#contact {
+  background-image: url("../img/afternoon6.jpg");
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+/* Dark Mode */
+
+body.dark #home {
+  background-image: url("../img/night.jpg");
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+body.dark #about {
+  background-image: url("../img/night2.jpg");
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+body.dark #projects {
+  background-image: url("../img/night3.jpg");
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}
+
+@media (max-width: 768px) {
+  body.dark #projects {
+    background-size: cover;
+    background-position: center center;
+    background-attachment: scroll;
+    min-height: auto;
+  }
+}
+
+body.dark #Experience {
+  background-image: url("../img/night4.jpg");
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+body.dark #Tools {
+  background-image: url("../img/night5.jpg");
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+body.dark #contact {
+  background-image: url("../img/night6.jpg");
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+.navbar-fixed {
+  @apply fixed z-[9999] bg-white bg-opacity-80 backdrop-blur-sm dark:bg-dark dark:bg-opacity-50;
+  box-shadow: inset 0 -1px 0 0 rgba(0, 0, 0, 0.2);
+}
+
+.hamburger-line {
+  @apply w-[30px] h-[2px] my-2 block bg-dark dark:bg-white;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+}
+
+.hamburger-active > span:nth-child(1) {
+  @apply rotate-45;
+}
+
+.hamburger-active > span:nth-child(2) {
+  @apply scale-0;
+}
+
+.hamburger-active > span:nth-child(3) {
+  @apply -rotate-45;
+}
+
+#nav-menu {
+  display: block !important;
+  opacity: 0;
+  transform: translateY(-8px);
+  pointer-events: none;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+#nav-menu.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: all;
+}
+
+#dropdown {
+  transition:
+    max-height 0.3s ease,
+    opacity 0.3s ease;
+  opacity: 0;
+}
+
+#dropdown.max-h-40 {
+  opacity: 1;
+}
+
+/* Desktop: selalu tampil, reset semua */
+@media (min-width: 1024px) {
+  #nav-menu {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    pointer-events: all !important;
+  }
+}
+
+/* Dark Mode */
+
+.toggle-track {
+  @apply relative flex items-center cursor-pointer overflow-hidden;
+  width: 90px;
+  height: 40px;
+  border-radius: 50px;
+  background: linear-gradient(to bottom, #73bbff, #a2d1fd);
+  transition: all 0.5s ease;
+}
+
+.toggle-track::before {
+  content: "";
+  @apply absolute inset-0 opacity-0;
+  border-radius: 50px;
+  background: linear-gradient(to top, #2b3347, #181d27);
+  transition: opacity 0.5s ease;
+  z-index: 0;
+}
+
+/* Sun/Moon knob */
+.toggle-knob {
+  @apply absolute rounded-full z-10;
+  width: 32px;
+  height: 32px;
+  left: 4px;
+  background-color: #ffc187;
+  box-shadow:
+    0 0 11px 0 #ffc187,
+    0 0 20px 0 #ffc18768,
+    -2px -2px 5px 0 #ffab5c inset;
+  transition: all 0.5s ease;
+}
+
+/* Darkside (spot bulan) */
+.toggle-knob::before {
+  content: "";
+  @apply absolute rounded-full;
+  top: 2px;
+  left: 2px;
+  width: 75%;
+  height: 75%;
+  background-color: #ffc187;
+  transition: all 0.5s ease;
+}
+
+/* Clouds wrapper */
+.toggle-clouds {
+  @apply absolute inset-0 overflow-hidden;
+  border-radius: 50px;
+  z-index: 1;
+}
+
+.cloud {
+  @apply absolute;
+  width: 55%;
+  transition: all 0.5s ease;
+}
+
+.cloud-1 {
+  bottom: -55%;
+  left: 0;
+}
+
+.cloud-2 {
+  bottom: -45%;
+  left: 25px;
+  transition: all 0.7s ease;
+}
+
+.cloud-3 {
+  bottom: -40%;
+  right: 0;
+}
+
+.cloud-4 {
+  bottom: -16%;
+  right: -10px;
+  transition: all 0.7s ease;
+}
+
+/* Stars */
+.toggle-stars {
+  @apply absolute left-0 pointer-events-none z-10;
+  top: 150%;
+  transform: translateY(-50%);
+  transition: all 0.5s ease;
+  width: 100%;
+}
+
+#dark-toggle:checked + label .toggle-track::before {
+  opacity: 1;
+}
+
+#dark-toggle:checked + label .toggle-knob {
+  left: calc(100% - 32px - 4px);
+  background-color: #dee5f3;
+  box-shadow: 0 0 20px 0 #dee5f3;
+}
+
+#dark-toggle:checked + label .toggle-knob::before {
+  background-color: #565c6b;
+}
+
+/* Clouds slide out */
+#dark-toggle:checked + label .cloud-1 {
+  bottom: -35%;
+  left: -110px;
+}
+
+#dark-toggle:checked + label .cloud-2 {
+  bottom: -15%;
+  left: -110px;
+  transition: all 0.7s ease;
+}
+
+#dark-toggle:checked + label .cloud-3 {
+  bottom: -15%;
+  right: -110px;
+}
+
+#dark-toggle:checked + label .cloud-4 {
+  bottom: -5%;
+  right: -110px;
+  transition: all 0.7s ease;
+}
+
+/* Stars slide in */
+#dark-toggle:checked + label .toggle-stars {
+  top: 50%;
+}
